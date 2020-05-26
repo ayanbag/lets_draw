@@ -1,223 +1,65 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Lets Draw !!</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="author" content="ayanbag">
+<html lang="en">
 
-
-    <link rel="icon" href="assets/drawing.png" type="image/gif" sizes="16x16">    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-    <script src="https://unpkg.com/ml5@0.4.0/dist/ml5.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="js/notify.js"></script>
-    
-    
-    <link rel="stylesheet" type="text/css" href="css/notify.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <meta charset="utf-8" />
-
-  </head>
-  <body>
-    <div id="sketch"></div>
-	<div id="ui">
-		<button type="button" id="info" data-toggle="modal" data-target="#infomod">info</button>
-    <button id="clear1">clear</button>
-    <button type="button" id="model_se" data-toggle="modal" data-target="#exa">models</button>
+<head>
+	<meta charset="utf-8">
 	
-		<button id="github">github</button>
-    </div>
-    
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-     <!-- Modal Block - Models -->
-     <div class="modal fade" id="exa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Models</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" style="line-height: 3.6;">
+	<title>Lets Draw !!</title>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <meta name="apple-mobile-web-app-capable" content="yes" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="mobile-web-app-capable" content="yes">
+	    <meta name="author" content="ayanbag">
+	    <link rel="icon" href="assets/drawing.png" type="image/gif" sizes="16x16">   
 
-            <button type="button" class="btn btn-primary" id="model1" value="cat" onclick="preload(this.id);" data-dismiss="modal">cat</button>
-            <button type="button" class="btn btn-secondary" id="model2" value="book" onclick="preload(this.id);" data-dismiss="modal">book</button>
-            <button type="button" class="btn btn-success" id="model3" value="alarm_clock" onclick="preload(this.id);" data-dismiss="modal">alarm clock</button>
-            <button type="button" class="btn btn-danger" id="model4" value="ambulance" onclick="preload(this.id);" data-dismiss="modal">ambulance</button>
-            <button type="button" class="btn btn-warning" id="model5" value="angel" onclick="preload(this.id);" data-dismiss="modal">angel</button>
-            <button type="button" class="btn btn-info" id="model6" value="ant" onclick="preload(this.id);" data-dismiss="modal">ant</button>
-            <button type="button" class="btn btn-success" id="model7" value="antyoga" onclick="preload(this.id);" data-dismiss="modal">antyoga</button>
-            <button type="button" class="btn btn-dark" id="model8" value="backpack" onclick="preload(this.id);" data-dismiss="modal">backpack</button>
-          
-            <button type="button" class="btn btn-primary" id="model9" value="barn" onclick="preload(this.id);" data-dismiss="modal">barn</button>
-            <button type="button" class="btn btn-secondary" id="model10" value="basket" onclick="preload(this.id);" data-dismiss="modal">basket</button>
-            <button type="button" class="btn btn-success" id="model11" value="bear" onclick="preload(this.id);" data-dismiss="modal">bear</button>
-            <button type="button" class="btn btn-danger" id="model12" value="bee" onclick="preload(this.id);" data-dismiss="modal">bee</button>
-            <button type="button" class="btn btn-warning" id="model13" value="beeflower" onclick="preload(this.id);" data-dismiss="modal">beeflower</button>
-            <button type="button" class="btn btn-info" id="model14" value="bicycle" onclick="preload(this.id);" data-dismiss="modal">bicycle</button>
-            <button type="button" class="btn btn-success" id="model15" value="bird" onclick="preload(this.id);" data-dismiss="modal">bird</button>
-            <button type="button" class="btn btn-dark" id="model16" value="brain" onclick="preload(this.id);" data-dismiss="modal">brain</button>
-          
-            <button type="button" class="btn btn-primary" id="model17" value="bridge" onclick="preload(this.id);" data-dismiss="modal">bridge</button>
-            <button type="button" class="btn btn-secondary" id="model18" value="bulldozer" onclick="preload(this.id);" data-dismiss="modal">bulldozer</button>
-            <button type="button" class="btn btn-success" id="model19" value="catbus" onclick="preload(this.id);" data-dismiss="modal">catbus</button>
-            <button type="button" class="btn btn-danger" id="model20" value="bus" onclick="preload(this.id);" data-dismiss="modal">bus</button>
-            <button type="button" class="btn btn-warning" id="model21" value="butterfly" onclick="preload(this.id);" data-dismiss="modal">butterfly</button>
-            <button type="button" class="btn btn-info" id="model22" value="cactus" onclick="preload(this.id);" data-dismiss="modal">cactus</button>
-            <button type="button" class="btn btn-success" id="model23" value="calendar" onclick="preload(this.id);" data-dismiss="modal">calendar</button>
-            <button type="button" class="btn btn-dark" id="model24" value="castle" onclick="preload(this.id);" data-dismiss="modal">castle</button>
-          
-            <button type="button" class="btn btn-primary" id="model25" value="catpig" onclick="preload(this.id);" data-dismiss="modal">catpig</button>
-            <button type="button" class="btn btn-secondary" id="model26" value="chair" onclick="preload(this.id);" data-dismiss="modal">chair</button>
-            <button type="button" class="btn btn-success" id="model27" value="couch" onclick="preload(this.id);" data-dismiss="modal">couch</button>
-            <button type="button" class="btn btn-danger" id="model28" value="crab" onclick="preload(this.id);" data-dismiss="modal">crab</button>
-            <button type="button" class="btn btn-warning" id="model29" value="crabchair" onclick="preload(this.id);" data-dismiss="modal">crabchair</button>
-            <button type="button" class="btn btn-info" id="model30" value="crabrabbitfacepig" onclick="preload(this.id);" data-dismiss="modal">crabrabbitfacepig</button>
-            <button type="button" class="btn btn-success" id="model31" value="cruise_ship" onclick="preload(this.id);" data-dismiss="modal">cruise ship</button>
-            <button type="button" class="btn btn-dark" id="model32" value="diving_board" onclick="preload(this.id);" data-dismiss="modal">diving board</button>
-          
-            <button type="button" class="btn btn-primary" id="model33" value="dog" onclick="preload(this.id);" data-dismiss="modal">dog</button>
-            <button type="button" class="btn btn-secondary" id="model34" value="dogbunny" onclick="preload(this.id);" data-dismiss="modal">dogbunny</button>
-            <button type="button" class="btn btn-success" id="model35" value="dolphin" onclick="preload(this.id);" data-dismiss="modal">dolphin</button>
-            <button type="button" class="btn btn-danger" id="model36" value="duck" onclick="preload(this.id);" data-dismiss="modal">duck</button>
-            <button type="button" class="btn btn-warning" id="model37" value="elephant" onclick="preload(this.id);" data-dismiss="modal">elephant</button>
-            <button type="button" class="btn btn-info" id="model38" value="elephantpig" onclick="preload(this.id);" data-dismiss="modal">elephantpig</button>
-            <button type="button" class="btn btn-success" id="model39" value="eye" onclick="preload(this.id);" data-dismiss="modal">eye</button>
-            <button type="button" class="btn btn-dark" id="model40" value="face" onclick="preload(this.id);" data-dismiss="modal">face</button>
-          
-            <button type="button" class="btn btn-primary" id="model41" value="fan" onclick="preload(this.id);" data-dismiss="modal">fan</button>
-            <button type="button" class="btn btn-secondary" id="model42" value="fire_hydrant" onclick="preload(this.id);" data-dismiss="modal">fire hydrant</button>
-            <button type="button" class="btn btn-success" id="model43" value="firetruck" onclick="preload(this.id);" data-dismiss="modal">firetruck</button>
-            <button type="button" class="btn btn-danger" id="model44" value="flamingo" onclick="preload(this.id);" data-dismiss="modal">flamingo</button>
-            <button type="button" class="btn btn-warning" id="model45" value="flower" onclick="preload(this.id);" data-dismiss="modal">flower</button>
-            <button type="button" class="btn btn-info" id="model46" value="floweryoga" onclick="preload(this.id);" data-dismiss="modal">floweryoga</button>
-            <button type="button" class="btn btn-success" id="model47" value="frog" onclick="preload(this.id);" data-dismiss="modal">frog</button>
-            <button type="button" class="btn btn-dark" id="model48" value="frogsofa" onclick="preload(this.id);" data-dismiss="modal">frogsofa</button>
-          
-            <button type="button" class="btn btn-primary" id="model49" value="garden" onclick="preload(this.id);" data-dismiss="modal">garden</button>
-            <button type="button" class="btn btn-secondary" id="model50" value="hand" onclick="preload(this.id);" data-dismiss="modal">hand</button>
-            <button type="button" class="btn btn-success" id="model51" value="hedgeberry" onclick="preload(this.id);" data-dismiss="modal">hedgeberry</button>
-            <button type="button" class="btn btn-danger" id="model52" value="hedgehog" onclick="preload(this.id);" data-dismiss="modal">hedgehog</button>
-            <button type="button" class="btn btn-warning" id="model53" value="helicopter" onclick="preload(this.id);" data-dismiss="modal">helicopter</button>
-            <button type="button" class="btn btn-info" id="model54" value="kangaroo" onclick="preload(this.id);" data-dismiss="modal">kangaroo</button>
-            <button type="button" class="btn btn-success" id="model55" value="key" onclick="preload(this.id);" data-dismiss="modal">key</button>
-            <button type="button" class="btn btn-dark" id="model56" value="lantern" onclick="preload(this.id);" data-dismiss="modal">lantern</button>
-          
-            <button type="button" class="btn btn-primary" id="model57" value="lighthouse" onclick="preload(this.id);" data-dismiss="modal">lighthouse</button>
-            <button type="button" class="btn btn-secondary" id="model58" value="lion" onclick="preload(this.id);" data-dismiss="modal">lion</button>
-            <button type="button" class="btn btn-success" id="model59" value="lionsheep" onclick="preload(this.id);" data-dismiss="modal">lionsheep</button>
-            <button type="button" class="btn btn-danger" id="model60" value="lobster" onclick="preload(this.id);" data-dismiss="modal">lobster</button>
-            <button type="button" class="btn btn-warning" id="model61" value="map" onclick="preload(this.id);" data-dismiss="modal">map</button>
-            <button type="button" class="btn btn-info" id="model62" value="mermaid" onclick="preload(this.id);" data-dismiss="modal">mermaid</button>
-            <button type="button" class="btn btn-success" id="model63" value="monapassport" onclick="preload(this.id);" data-dismiss="modal">monapassport</button>
-            <button type="button" class="btn btn-dark" id="model64" value="monkey" onclick="preload(this.id);" data-dismiss="modal">monkey</button>
-          
-            <button type="button" class="btn btn-primary" id="model65" value="mosquito" onclick="preload(this.id);" data-dismiss="modal">mosquito</button>
-            <button type="button" class="btn btn-secondary" id="model66" value="octopus" onclick="preload(this.id);" data-dismiss="modal">octopus</button>
-            <button type="button" class="btn btn-success" id="model67" value="owl" onclick="preload(this.id);" data-dismiss="modal">owl</button>
-            <button type="button" class="btn btn-danger" id="model68" value="paintbrush" onclick="preload(this.id);" data-dismiss="modal">paintbrush</button>
-            <button type="button" class="btn btn-warning" id="model69" value="palm_tree" onclick="preload(this.id);" data-dismiss="modal">palm tree</button>
-            <button type="button" class="btn btn-info" id="model70" value="parrot" onclick="preload(this.id);" data-dismiss="modal">parrot</button>
-            <button type="button" class="btn btn-success" id="model71" value="passport" onclick="preload(this.id);" data-dismiss="modal">passport</button>
-            <button type="button" class="btn btn-dark" id="model72" value="peas" onclick="preload(this.id);" data-dismiss="modal">peas</button>
-          
-            <button type="button" class="btn btn-primary" id="model73" value="penguin" onclick="preload(this.id);" data-dismiss="modal">penguin</button>
-            <button type="button" class="btn btn-secondary" id="model74" value="pig" onclick="preload(this.id);" data-dismiss="modal">pig</button>
-            <button type="button" class="btn btn-success" id="model75" value="pigsheep" onclick="preload(this.id);" data-dismiss="modal">pigsheep</button>
-            <button type="button" class="btn btn-danger" id="model76" value="pineapple" onclick="preload(this.id);" data-dismiss="modal">pineapple</button>
-            <button type="button" class="btn btn-warning" id="model77" value="pool" onclick="preload(this.id);" data-dismiss="modal">pool</button>
-            <button type="button" class="btn btn-info" id="model78" value="postcard" onclick="preload(this.id);" data-dismiss="modal">postcard</button>
-            <button type="button" class="btn btn-success" id="model79" value="power_outlet" onclick="preload(this.id);" data-dismiss="modal">power outlet</button>
-            <button type="button" class="btn btn-dark" id="model80" value="rabbit" onclick="preload(this.id);" data-dismiss="modal">rabbit</button>
-          
-            <button type="button" class="btn btn-primary" id="model81" value="rabbitturtle" onclick="preload(this.id);" data-dismiss="modal">rabbitturtle</button>
-            <button type="button" class="btn btn-secondary" id="model82" value="radio" onclick="preload(this.id);" data-dismiss="modal">radio</button>
-            <button type="button" class="btn btn-success" id="model83" value="radioface" onclick="preload(this.id);" data-dismiss="modal">radioface</button>
-            <button type="button" class="btn btn-danger" id="model84" value="rain" onclick="preload(this.id);" data-dismiss="modal">rain</button>
-            <button type="button" class="btn btn-warning" id="model85" value="rhinoceros" onclick="preload(this.id);" data-dismiss="modal">rhinoceros</button>
-            <button type="button" class="btn btn-info" id="model86" value="rifle" onclick="preload(this.id);" data-dismiss="modal">rifle</button>
-            <button type="button" class="btn btn-success" id="model87" value="roller_coaster" onclick="preload(this.id);" data-dismiss="modal">roller coaster</button>
-            <button type="button" class="btn btn-dark" id="model88" value="sandwich" onclick="preload(this.id);" data-dismiss="modal">sandwich</button>
-          
-            <button type="button" class="btn btn-primary" id="model89" value="scorpion" onclick="preload(this.id);" data-dismiss="modal">scorpion</button>
-            <button type="button" class="btn btn-secondary" id="model90" value="sea_turtle" onclick="preload(this.id);" data-dismiss="modal">sea turtle</button>
-            <button type="button" class="btn btn-success" id="model91" value="sheep" onclick="preload(this.id);" data-dismiss="modal">sheep</button>
-            <button type="button" class="btn btn-danger" id="model92" value="skull" onclick="preload(this.id);" data-dismiss="modal">skull</button>
-            <button type="button" class="btn btn-warning" id="model93" value="snail" onclick="preload(this.id);" data-dismiss="modal">snail</button>
-            <button type="button" class="btn btn-info" id="model94" value="snowflake" onclick="preload(this.id);" data-dismiss="modal">snowflake</button>
-            <button type="button" class="btn btn-success" id="model95" value="speedboat" onclick="preload(this.id);" data-dismiss="modal">speedboat</button>
-            <button type="button" class="btn btn-dark" id="model96" value="spider" onclick="preload(this.id);" data-dismiss="modal">spider</button>
-          
-            <button type="button" class="btn btn-primary" id="model97" value="squirrel" onclick="preload(this.id);" data-dismiss="modal">squirrel</button>
-            <button type="button" class="btn btn-secondary" id="model98" value="steak" onclick="preload(this.id);" data-dismiss="modal">steak</button>
-            <button type="button" class="btn btn-success" id="model99" value="stove" onclick="preload(this.id);" data-dismiss="modal">stove</button>
-            <button type="button" class="btn btn-danger" id="model100" value="strawberry" onclick="preload(this.id);" data-dismiss="modal">strawberry</button>
-            <button type="button" class="btn btn-warning" id="model101" value="swan" onclick="preload(this.id);" data-dismiss="modal">swan</button>
-            <button type="button" class="btn btn-info" id="model102" value="swing_set" onclick="preload(this.id);" data-dismiss="modal">swing set</button>
-            <button type="button" class="btn btn-success" id="model103" value="the_mona_lisa" onclick="preload(this.id);" data-dismiss="modal">the mona lisa</button>
-            <button type="button" class="btn btn-dark" id="model104" value="tiger" onclick="preload(this.id);" data-dismiss="modal">tiger</button>
-          
-            <button type="button" class="btn btn-primary" id="model105" value="toothbrush" onclick="preload(this.id);" data-dismiss="modal">toothbrush</button>
-            <button type="button" class="btn btn-secondary" id="model106" value="toothpaste" onclick="preload(this.id);" data-dismiss="modal">toothpaste</button>
-            <button type="button" class="btn btn-success" id="model107" value="tractor" onclick="preload(this.id);" data-dismiss="modal">tractor</button>
-            <button type="button" class="btn btn-danger" id="model108" value="trombone" onclick="preload(this.id);" data-dismiss="modal">trombone</button>
-            <button type="button" class="btn btn-warning" id="model109" value="truck" onclick="preload(this.id);" data-dismiss="modal">truck</button>
-            <button type="button" class="btn btn-info" id="model110" value="whale" onclick="preload(this.id);" data-dismiss="modal">whale</button>
-            <button type="button" class="btn btn-success" id="model111" value="windmill" onclick="preload(this.id);" data-dismiss="modal">windmill</button>
-            <button type="button" class="btn btn-dark" id="model112" value="yoga" onclick="preload(this.id);" data-dismiss="modal">yoga</button>
-          
-            <button type="button" class="btn btn-primary" id="model113" value="yogabicycle" onclick="preload(this.id);" data-dismiss="modal">yogabicycle</button>
-            <button type="button" class="btn btn-secondary" id="model114" value="everything" onclick="preload(this.id);" data-dismiss="modal">everything</button>
-           
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400" rel="stylesheet">
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+	<!-- Font Awesome Icon -->
+	<link type="text/css" rel="stylesheet" href="introcss/font-awesome.min.css" />
 
-    <!-- Modal Block: Info-->
-    <div class="modal fade" id="infomod" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Lets Draw !!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>This project is based on SketchRNN. The <b>SketchRNN</b> is a recurrent neural network model trained on millions of doodles collected from the <a href="https://quickdraw.withgoogle.com/">Quick, Draw!</a> game. The SketchRNN model can create new drawings (from a list of categories) based on an initial path.This original paper and implementation of SketchRNN was made in TensorFlow and ported to <a href="https://magenta.tensorflow.org/">Magenta.js</a> by <a href="https://twitter.com/hardmaru">David Ha</a>. The ml5.js implementation was ported by <a href="https://github.com/reiinakano">Reiichiro Nakano</a>.</p> 
-            <p>Built with <a href="https://ml5js.org/">ml5.js</a> and <a href="https://p5js.org/">p5.js</a>.</p>
-            <p>Reference : Draw Together with a Neural Network (<a href="https://magenta.tensorflow.org/sketch-rnn-demo">Link</a>)</p>
-            <p>Project by <a href="https://ayanbag.com">Ayan Bag</a></p>
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="introcss/style.css" />
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 
-          </div>
-        </div>
-      </div>
-    </div>
+</head>
 
-   
+<body>
 
+	<div id="notfound">
+		<div class="notfound-bg">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1>Lets Draw</h1>
+			</div>
+			<h2>Draw with A.I</h2>
+			<p>Start Doodling and <b>Lets Draw</b> will start guessing and complete your doodle based on the model you selected.</p>
+			<a href="main.html">Getting Started</a>
+			
+			<div class="notfound-social">
+				<a href="https://github.com/ayanbag/lets_draw"><i class="fa fa-github"></i></a>
+				<a href="https://ayanbag.com"><i class="fa fa-user"></i></a>
+			</div>
+			
+			<p>This is an A.I Project</p>
+		</div>
+	</div>
 
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
-  </div>
-    <script src="js/rdp.js"></script>
-    <script src="js/sketch.js"></script>
-    <script src="js/main.js"></script>
-  </body>
 </html>
